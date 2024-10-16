@@ -1,4 +1,0 @@
-repository "Challenge 4@asevcenko@cloud"
-  path "/"
-    br "/main"
-    co "/main"

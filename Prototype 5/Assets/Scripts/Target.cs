@@ -6,6 +6,7 @@ public class Target : MonoBehaviour
 {
 
     private Rigidbody targetRB;
+    private GameManager gameManager;
     private float minSpeed = 8;
     private float maxSpeed = 14;
     private float maxTorque = 10;
@@ -16,7 +17,7 @@ public class Target : MonoBehaviour
     void Start()
     {
         targetRB = GetComponent<Rigidbody>();
-
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         targetRB.AddForce(RandomForce(), ForceMode.Impulse);
         targetRB.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
 
@@ -28,6 +29,17 @@ public class Target : MonoBehaviour
     {
 
     }
+
+    private void OnMouseDown()
+    {
+        Destroy(gameObject);
+        gameManager.UpdateScore(5);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+       Destroy(gameObject) ;
+    }
+
 
     Vector3 RandomForce()
     {
